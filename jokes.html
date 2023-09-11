@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jokes generator</title>
+    <link rel="stylesheet" href="jokes.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading same">Jokes Generator</h1>
+        <p class="paragraph same">loading..</p>
+        <button class="button same"></button>
+    </div>
+
+
+
+    <script>
+        let paragraph = document.querySelector(".paragraph");
+        let button = document.querySelector(".button");
+       try{
+        button.innerHTML = "..loading";
+        let fetchingApi = fetch("https://official-joke-api.appspot.com/random_joke")
+        .then(function(res){
+            let converting = res.json();
+            return converting;
+        }).then(function(jokeapi){
+            console.log(jokeapi.setup)
+            paragraph.innerHTML = (jokeapi.setup);
+            button.innerHTML = "Tell me a joke"
+        })
+       }
+       catch{
+        paragraph.innerHTML = "ERROR IN LOADING FILES"
+       }
+        function addingFunction(){
+        
+            location.reload();
+        }
+        button.addEventListener('click', addingFunction)
+       
+    </script>
+</body>
+</html>
